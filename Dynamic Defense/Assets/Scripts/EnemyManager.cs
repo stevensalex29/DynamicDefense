@@ -7,13 +7,18 @@ public class EnemyManager : MonoBehaviour
 {
     public GameObject enemy1;
     private List<GameObject> enemyList;
+    private GameObject[] enemySpawns;
     // Start is called before the first frame update
     void Start()
     {
         enemyList = new List<GameObject>();
-        for(int i = 0;i<10;i++)
+        
+        enemySpawns = GameObject.FindGameObjectsWithTag("EnemySpawn");
+
+        for (int i = 0;i<10;i++)
         {
-            GameObject g = Instantiate(enemy1, randPos(),Quaternion.identity);
+
+            GameObject g = Instantiate(enemy1, enemySpawns[UnityEngine.Random.Range(0,enemySpawns.Length)].transform.position,Quaternion.identity);
             g.GetComponent<Enemy>().setSpeed(2.0f);
             enemyList.Add(g);
         }
@@ -23,6 +28,20 @@ public class EnemyManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        for (int i = 0; i < 10; i++)
+        {
+            if(enemyList[i] ==null)
+            {
+                enemyList.Remove(enemyList[i]);
+            }
+            
+        }
+        if (enemyList.Count < 11)
+        {
+            GameObject g = Instantiate(enemy1, enemySpawns[UnityEngine.Random.Range(0, enemySpawns.Length)].transform.position, Quaternion.identity);
+            g.GetComponent<Enemy>().setSpeed(2.0f);
+            enemyList.Add(g);
+        }
         
     }
     

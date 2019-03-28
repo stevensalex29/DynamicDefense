@@ -19,9 +19,9 @@ public class Enemy : MonoBehaviour
     }
     private void OnCollisionEnter(Collision collision)
     {
-        if(collision.gameObject.tag=="Player")
+        if(collision.gameObject.tag=="Bullet")
         {
-            gameObject.SetActive(false);
+            Destroy(gameObject);
         }
             
     }
