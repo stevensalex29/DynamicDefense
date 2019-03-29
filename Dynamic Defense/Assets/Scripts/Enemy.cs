@@ -17,7 +17,7 @@ public class Enemy : MonoBehaviour
     void Update()
     {
         float step = Time.deltaTime * speed;
-        gameObject.transform.position = Vector3.MoveTowards(gameObject.transform.position, new Vector3 (0.0f,.5f,0.0f), step);
+        gameObject.transform.position = Vector3.MoveTowards(gameObject.transform.position, new Vector3 (0.0f,1f,0.0f), step);
     }
     private void OnCollisionEnter(Collision collision)
     {
