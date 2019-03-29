@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
+    public GameObject deathParticle;
+
     private float speed;
     // Start is called before the first frame update
     void Start()
@@ -21,6 +23,7 @@ public class Enemy : MonoBehaviour
     {
         if(collision.gameObject.tag=="Bullet")
         {
+            GameObject particle = Instantiate(deathParticle, gameObject.transform.position, deathParticle.transform.rotation) as GameObject;
             Destroy(gameObject);
         }
             

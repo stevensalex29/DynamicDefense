@@ -28,9 +28,9 @@ public class EnemyManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        for (int i = 0; i < 10; i++)
+        for (int i = 0; i < enemyList.Count; i++)
         {
-            if(enemyList[i] ==null)
+            if(enemyList[i] == null)
             {
                 enemyList.Remove(enemyList[i]);
             }
