@@ -34,4 +34,9 @@ public class ButtonScript : MonoBehaviour
     {
         Application.Quit();
     }
+
+    // go to gun shop
+    public void GunStore() {
+        UnityEngine.SceneManagement.SceneManager.LoadScene("GunShop");
+    }
 }
