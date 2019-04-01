@@ -9,11 +9,13 @@ public class Player : MonoBehaviour
     //Attribute
     private float health;
     public GameObject deathParticle;
+    CameraShake shake;
 
     // Start is called before the first frame update
     void Start()
     {
         health = 1.0f;
+        shake = gameObject.GetComponent<CameraShake>();
     }
 
     // Update is called once per frame
@@ -27,6 +29,7 @@ public class Player : MonoBehaviour
         {
             // decrement health, kill enemy, show particles
             health -= 0.1f;
+            shake.Shake();
             GameObject particle = Instantiate(deathParticle, gameObject.transform.position, deathParticle.transform.rotation) as GameObject;
             Destroy(collision.gameObject);
             if (health <= 0.0f) // if health is zero, game over

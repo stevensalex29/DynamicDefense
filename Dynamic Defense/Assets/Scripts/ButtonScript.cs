@@ -17,9 +17,16 @@ public class ButtonScript : MonoBehaviour
         
     }
 
+    // Play again
     public void playAgain()
     {
         UnityEngine.SceneManagement.SceneManager.LoadScene("Level_Default");
+    }
+
+    // Main menu
+    public void mainMenu()
+    {
+        UnityEngine.SceneManagement.SceneManager.LoadScene("MainMenu");
     }
 
     // Quit Application
