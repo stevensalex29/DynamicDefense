@@ -9,13 +9,16 @@ public class Player : MonoBehaviour
     //Attribute
     private float health;
     public GameObject deathParticle;
+    public AudioClip hurtSound;
     CameraShake shake;
+    private AudioSource source;
 
     // Start is called before the first frame update
     void Start()
     {
         health = 1.0f;
         shake = gameObject.GetComponent<CameraShake>();
+        source = GameObject.Find("AudioSource").GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -32,6 +35,7 @@ public class Player : MonoBehaviour
             shake.Shake();
             GameObject particle = Instantiate(deathParticle, gameObject.transform.position, deathParticle.transform.rotation) as GameObject;
             Destroy(collision.gameObject);
+            source.PlayOneShot(hurtSound, 0.3f);
             if (health <= 0.0f) // if health is zero, game over
             {
                 UnityEngine.SceneManagement.SceneManager.LoadScene("GameOver");

@@ -26,7 +26,7 @@ public class Enemy : MonoBehaviour
         if(collision.gameObject.tag=="Bullet")
         {
             GameObject particle = Instantiate(deathParticle, gameObject.transform.position, deathParticle.transform.rotation) as GameObject;
-            //source.PlayOneShot(deathSound,0.05f);
+            source.PlayOneShot(deathSound,0.05f);
             Destroy(gameObject);
         }
             

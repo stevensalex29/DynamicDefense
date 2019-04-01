@@ -14,6 +14,8 @@ public class ShieldScript : MonoBehaviour
     {
         
     }
+
+
     GameObject GetMouseHoverObject(float range)
     {
         Vector3 position = gameObject.transform.position;
@@ -21,7 +23,6 @@ public class ShieldScript : MonoBehaviour
         Vector3 target = position + Camera.main.transform.forward * range;
         if (Physics.Linecast(position, target, out rayCast))
         {
-            Debug.Log("Hit");
             return rayCast.collider.gameObject;
         }
         else
@@ -41,19 +42,19 @@ public class ShieldScript : MonoBehaviour
             canPush = true;
             timer = 0;
         }
-        if (temp.gameObject.tag == "Enemy")
+        if(temp != null)
         {
-            facingEnemy = temp;
-            Debug.Log("Push");
-            
-
-            if (Input.GetMouseButton(1) && canPush)
+            if (temp.gameObject.tag == "Enemy")
             {
-                push();
-                canPush = false;
+                facingEnemy = temp;
+
+                if (Input.GetMouseButton(1) && canPush)
+                {
+                    push();
+                    canPush = false;
+                }
             }
         }
-        
     }
     void push()
     {

@@ -6,6 +6,8 @@ public class GunScript : MonoBehaviour
 {
     public GameObject bullet;
     public Transform startPos;
+    public AudioClip bulletSound;
+    private AudioSource source;
 
     float timer = 0;
     bool canShoot = true;
@@ -13,7 +15,7 @@ public class GunScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        source = GameObject.Find("AudioSource").GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -29,6 +31,7 @@ public class GunScript : MonoBehaviour
         if (Input.GetMouseButton(0) && canShoot)
         {
             GameObject newBullet = Instantiate(bullet, startPos.position, transform.rotation);
+            source.PlayOneShot(bulletSound, 0.05f);
             newBullet.GetComponent<Rigidbody>().AddForce(transform.forward * 4000.0f);
             canShoot = false;
         }
