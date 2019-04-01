@@ -5,12 +5,14 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     public GameObject deathParticle;
+    public AudioClip deathSound;
+    private AudioSource source;
 
     private float speed;
     // Start is called before the first frame update
     void Start()
     {
-        
+        source = GameObject.Find("AudioSource").GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -24,6 +26,7 @@ public class Enemy : MonoBehaviour
         if(collision.gameObject.tag=="Bullet")
         {
             GameObject particle = Instantiate(deathParticle, gameObject.transform.position, deathParticle.transform.rotation) as GameObject;
+            //source.PlayOneShot(deathSound,0.05f);
             Destroy(gameObject);
         }
             

@@ -114,6 +114,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   deathParticle: {fileID: 4666281462530831663, guid: b93b7ac2d3cadbb468d8435346e0493a,
     type: 3}
+  deathSound: {fileID: 0}
 --- !u!136 &5840093690060731827
 CapsuleCollider:
   m_ObjectHideFlags: 0
