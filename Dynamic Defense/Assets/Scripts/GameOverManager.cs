@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameOverManager : MonoBehaviour
 {
@@ -9,6 +10,12 @@ public class GameOverManager : MonoBehaviour
     {
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
+        GameObject.Find("Score").GetComponent<Text>().text = "Final Score: " + PlayerPrefs.GetInt("score");
+    }
+
+    void OnApplicationQuit()
+    {
+        PlayerPrefs.DeleteAll();
     }
 
     // Update is called once per frame

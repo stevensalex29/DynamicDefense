@@ -42,7 +42,7 @@ public class Player : MonoBehaviour
             }
             else // otherwise display new health
             {
-                GameObject.Find("Health").GetComponent<Text>().text = Mathf.CeilToInt(health * 100) + "%";
+                GameObject.Find("Health").GetComponent<Text>().text = "HP " + Mathf.CeilToInt(health * 100) + "%";
             }
         }
     }
