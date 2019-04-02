@@ -1,20 +1,20 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.UI;
 public class ShieldScript : MonoBehaviour
 {
     private GameObject facingEnemy;
     public GameObject temp;
     float timer = 0;
     bool canPush = true;
-
+    private float percent;
     // Start is called before the first frame update
     void Start()
     {
-        
+        timer = 3.0f;
     }
-
+    
 
     GameObject GetMouseHoverObject(float range)
     {
@@ -35,12 +35,15 @@ public class ShieldScript : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        temp = GetMouseHoverObject(15);
+        temp = GetMouseHoverObject(10);
         timer += Time.deltaTime;
-        if (timer >= 5.00f)
+        percent = ((timer / 3.00f) * 100);
+        GameObject.Find("Cooldown").GetComponent<Text>().text = "Force Push Cooldown:  " + Mathf.FloorToInt(percent) +"%";
+        if (timer >= 3.00f)
         {
+            timer = 3.00f;
             canPush = true;
-            timer = 0;
+            
         }
         if(temp != null)
         {
@@ -52,6 +55,7 @@ public class ShieldScript : MonoBehaviour
                 {
                     push();
                     canPush = false;
+                    timer = 0;
                 }
             }
         }
@@ -62,6 +66,7 @@ public class ShieldScript : MonoBehaviour
         {
             return;
         }
+        /*
         Rigidbody rb = facingEnemy.GetComponent<Rigidbody>();
         if(rb!=null)
         {
@@ -73,6 +78,15 @@ public class ShieldScript : MonoBehaviour
 
             rb.velocity = throwVelocity;
             rb.useGravity = true;
+        }
+        */
+        else
+        {
+            Vector3 pushVector = facingEnemy.transform.position;
+            float speed = Time.deltaTime;
+            Vector3 throwVelocity = speed * pushVector.normalized;
+            throwVelocity += Camera.main.transform.forward * 13;
+            facingEnemy.gameObject.transform.Translate(throwVelocity);
         }
         facingEnemy = null;
     }
