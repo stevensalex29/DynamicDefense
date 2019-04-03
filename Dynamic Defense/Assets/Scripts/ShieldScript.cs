@@ -66,20 +66,21 @@ public class ShieldScript : MonoBehaviour
         {
             return;
         }
-        /*
+        
         Rigidbody rb = facingEnemy.GetComponent<Rigidbody>();
         if(rb!=null)
         {
             Vector3 pushVector = facingEnemy.transform.position;
-            float speed = pushVector.magnitude / Time.deltaTime;
+            float speed = 15 / Time.deltaTime;
             Vector3 throwVelocity = speed * pushVector.normalized;
 
             throwVelocity += Camera.main.transform.forward * 10;
 
-            rb.velocity = throwVelocity;
+            //rb.velocity = throwVelocity;
+            rb.AddForce(throwVelocity);
             rb.useGravity = true;
         }
-        */
+        /*
         else
         {
             Vector3 pushVector = facingEnemy.transform.position;
@@ -88,6 +89,7 @@ public class ShieldScript : MonoBehaviour
             throwVelocity += Camera.main.transform.forward * 13;
             facingEnemy.gameObject.transform.Translate(throwVelocity);
         }
+        */
         facingEnemy = null;
     }
 }
