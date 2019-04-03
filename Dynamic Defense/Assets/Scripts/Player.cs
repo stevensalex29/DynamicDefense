@@ -10,6 +10,7 @@ public class Player : MonoBehaviour
     private float health;
     public GameObject deathParticle;
     public AudioClip hurtSound;
+    public GameObject deathPanel;
     CameraShake shake;
     private AudioSource source;
     GameObject[] weaponList;
@@ -47,16 +48,24 @@ public class Player : MonoBehaviour
             shake.Shake();
             GameObject particle = Instantiate(deathParticle, gameObject.transform.position, deathParticle.transform.rotation) as GameObject;
             Destroy(collision.gameObject);
-            source.PlayOneShot(hurtSound, 0.3f);
-            if (health <= 0.0f) // if health is zero, game over
+            if(health>=0.0f)source.PlayOneShot(hurtSound, 0.3f);
+            if (health <= 0.0f && !deathPanel.activeSelf) // if health is zero, game over
             {
-                UnityEngine.SceneManagement.SceneManager.LoadScene("GameOver");
+                GameObject.Find("Health").GetComponent<Text>().text = "HP 0%";
+                deathPanel.SetActive(true);
+                Invoke("changeScene", 2.0f);
             }
             else // otherwise display new health
             {
-                GameObject.Find("Health").GetComponent<Text>().text = "HP " + Mathf.CeilToInt(health * 100) + "%";
+                if(!deathPanel.activeSelf)GameObject.Find("Health").GetComponent<Text>().text = "HP " + Mathf.CeilToInt(health * 100) + "%";
             }
         }
+    }
+
+    // Switch to gameover scene
+    public void changeScene()
+    {
+        UnityEngine.SceneManagement.SceneManager.LoadScene("GameOver");
     }
 
     void SwitchWeapon()

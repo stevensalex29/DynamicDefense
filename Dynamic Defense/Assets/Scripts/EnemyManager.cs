@@ -46,9 +46,15 @@ public class EnemyManager : MonoBehaviour
 
         if (enemiesLeft == 0)
         {
-            UnityEngine.SceneManagement.SceneManager.LoadScene("GunShop");
+            if(!GameObject.Find("Player").GetComponent<Player>().deathPanel.activeSelf)Invoke("changeScene", 2.0f);
         }
         
+    }
+
+    // Switch to gunshop scene
+    public void changeScene()
+    {
+        UnityEngine.SceneManagement.SceneManager.LoadScene("GunShop");
     }
     
     Vector3 randPos()

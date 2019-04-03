@@ -11,6 +11,9 @@ public class GameOverManager : MonoBehaviour
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
         GameObject.Find("Score").GetComponent<Text>().text = "Final Score: " + PlayerPrefs.GetInt("score");
+        PlayerPrefs.SetInt("wave", 1);
+        PlayerPrefs.SetInt("money", 0);
+        PlayerPrefs.SetInt("score", 0);
     }
 
     void OnApplicationQuit()

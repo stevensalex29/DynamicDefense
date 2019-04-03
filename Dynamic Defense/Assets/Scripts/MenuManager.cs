@@ -12,6 +12,7 @@ public class MenuManager : MonoBehaviour
         Cursor.visible = true;
         PlayerPrefs.SetInt("wave", 1);
         PlayerPrefs.SetInt("score", 0);
+        PlayerPrefs.SetInt("money", 0);
     }
 
     void OnApplicationQuit()
