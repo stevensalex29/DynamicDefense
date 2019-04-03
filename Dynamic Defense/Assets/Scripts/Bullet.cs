@@ -13,12 +13,13 @@ public class Bullet : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Destroy(this.gameObject, 5.0f);
+        Destroy(gameObject, 5.0f);
     }
 
     // Destroy gameobject when it collides
     private void OnCollisionEnter(Collision collision)
     {
-        Destroy(this.gameObject);
+        if (collision.gameObject.tag != "Player" && gameObject.tag != "JokeBullet")
+            Destroy(gameObject);
     }
 }

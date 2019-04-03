@@ -8,6 +8,9 @@ TagManager:
   - Enemy
   - EnemySpawn
   - Bullet
+  - Weapon
+  - JokeWeapon
+  - JokeBullet
   layers:
   - Default
   - TransparentFX

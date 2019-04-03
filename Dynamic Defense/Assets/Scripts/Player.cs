@@ -12,6 +12,9 @@ public class Player : MonoBehaviour
     public AudioClip hurtSound;
     CameraShake shake;
     private AudioSource source;
+    GameObject[] weaponList;
+    int currentWeapon = 0;
+    GameObject jokeWeapon;
 
     // Start is called before the first frame update
     void Start()
@@ -19,11 +22,20 @@ public class Player : MonoBehaviour
         health = 1.0f;
         shake = gameObject.GetComponent<CameraShake>();
         source = GameObject.Find("AudioSource").GetComponent<AudioSource>();
+        weaponList = GameObject.FindGameObjectsWithTag("Weapon");
+        foreach (GameObject weapon in weaponList)
+        {
+            weapon.SetActive(false);
+        }
+        weaponList[currentWeapon].SetActive(true);
+        jokeWeapon = GameObject.FindGameObjectWithTag("JokeWeapon");
+        jokeWeapon.SetActive(false);
     }
 
     // Update is called once per frame
     void Update()
     {
+        SwitchWeapon();
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -44,6 +56,26 @@ public class Player : MonoBehaviour
             {
                 GameObject.Find("Health").GetComponent<Text>().text = "HP " + Mathf.CeilToInt(health * 100) + "%";
             }
+        }
+    }
+
+    void SwitchWeapon()
+    {
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            jokeWeapon.SetActive(false);
+            weaponList[currentWeapon].SetActive(false);
+            currentWeapon++;
+            if (currentWeapon >= weaponList.Length)
+            {
+                currentWeapon = 0;
+            }
+            weaponList[currentWeapon].SetActive(true);
+        }
+        if (Input.GetKeyDown(KeyCode.J))
+        {
+            weaponList[currentWeapon].SetActive(false);
+            jokeWeapon.SetActive(true);
         }
     }
 }

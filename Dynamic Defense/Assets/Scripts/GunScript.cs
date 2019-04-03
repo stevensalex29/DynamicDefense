@@ -30,9 +30,9 @@ public class GunScript : MonoBehaviour
 
         if (Input.GetMouseButton(0) && canShoot)
         {
-            GameObject newBullet = Instantiate(bullet, startPos.position, transform.rotation);
+            GameObject newBullet = Instantiate(bullet, startPos.position, Camera.main.transform.rotation);
             source.PlayOneShot(bulletSound, 0.05f);
-            newBullet.GetComponent<Rigidbody>().AddForce(transform.forward * 4000.0f);
+            newBullet.GetComponent<Rigidbody>().AddForce(Camera.main.transform.forward * 3500.0f);
             canShoot = false;
         }
     }
