@@ -9,7 +9,7 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        PlayerPrefs.SetInt("score", 0);
+        
     }
 
     void OnApplicationQuit()
@@ -21,7 +21,7 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         GameObject.Find("Score").GetComponent<Text>().text = "Score: " + PlayerPrefs.GetInt("score");
-        GameObject.Find("Cash").GetComponent<Text>().text = "Cash: $" + PlayerPrefs.GetInt("money");
+        GameObject.Find("Wave").GetComponent<Text>().text = "Wave: " + PlayerPrefs.GetInt("wave");
         if (Input.GetKeyDown("m"))
         {
             UnityEngine.SceneManagement.SceneManager.LoadScene("MainMenu");

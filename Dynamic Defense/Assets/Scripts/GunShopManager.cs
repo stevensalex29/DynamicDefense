@@ -1,13 +1,21 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GunShopManager : MonoBehaviour
 {
+    private int pastWave;
+    private int currentWave;
     // Start is called before the first frame update
     void Start()
     {
-        
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+        GameObject.Find("WaveBeatText").GetComponent<Text>().text = "You Beat Wave " + PlayerPrefs.GetInt("wave") + ", your score is " + PlayerPrefs.GetInt("score");
+        GameObject.Find("Cash").GetComponent<Text>().text = "Cash: $" + PlayerPrefs.GetInt("money");
+        pastWave = PlayerPrefs.GetInt("wave");
+        currentWave = pastWave;
     }
 
     void OnApplicationQuit()
@@ -18,7 +26,11 @@ public class GunShopManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (pastWave == currentWave)
+        {
+            currentWave = pastWave + 1;
+            PlayerPrefs.SetInt("wave", currentWave);
+        }
     }
 
     // Purchase Rifle

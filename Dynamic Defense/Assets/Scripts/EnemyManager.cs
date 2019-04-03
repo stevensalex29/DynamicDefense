@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEditor.SceneManagement;
 using System;
 
 public class EnemyManager : MonoBehaviour
@@ -8,14 +10,17 @@ public class EnemyManager : MonoBehaviour
     public GameObject enemy1;
     private List<GameObject> enemyList;
     private GameObject[] enemySpawns;
+    private int waveNumber;
+    private int enemiesLeft;
     // Start is called before the first frame update
     void Start()
     {
         enemyList = new List<GameObject>();
-        
+        waveNumber = PlayerPrefs.GetInt("wave");
         enemySpawns = GameObject.FindGameObjectsWithTag("EnemySpawn");
+        enemiesLeft = 10 + ((waveNumber-1)*2);
 
-        for (int i = 0;i<10;i++)
+        for (int i = 0;i<enemiesLeft;i++)
         {
 
             GameObject g = Instantiate(enemy1, enemySpawns[UnityEngine.Random.Range(0,enemySpawns.Length)].transform.position,Quaternion.identity);
@@ -30,17 +35,18 @@ public class EnemyManager : MonoBehaviour
     {
         for (int i = 0; i < enemyList.Count; i++)
         {
-            if(enemyList[i] == null)
+            if (enemyList[i] == null)
             {
                 enemyList.Remove(enemyList[i]);
+                enemiesLeft--;
             }
-            
+
         }
-        if (enemyList.Count < 11)
+        GameObject.Find("EnemyLeft").GetComponent<Text>().text = "Enemies Left: " + enemiesLeft;
+
+        if (enemiesLeft == 0)
         {
-            GameObject g = Instantiate(enemy1, enemySpawns[UnityEngine.Random.Range(0, enemySpawns.Length)].transform.position, Quaternion.identity);
-            g.GetComponent<Enemy>().setSpeed(2.0f);
-            enemyList.Add(g);
+            UnityEngine.SceneManagement.SceneManager.LoadScene("GunShop");
         }
         
     }

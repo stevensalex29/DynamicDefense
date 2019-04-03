@@ -10,7 +10,8 @@ public class MenuManager : MonoBehaviour
     {
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
-        GameObject.Find("Cash").GetComponent<Text>().text = "Cash: $" + PlayerPrefs.GetInt("money");
+        PlayerPrefs.SetInt("wave", 1);
+        PlayerPrefs.SetInt("score", 0);
     }
 
     void OnApplicationQuit()
