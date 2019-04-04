@@ -7,6 +7,7 @@ public class GunShopManager : MonoBehaviour
 {
     private int pastWave;
     private int currentWave;
+    public GameObject player;
     // Start is called before the first frame update
     void Start()
     {
@@ -16,6 +17,7 @@ public class GunShopManager : MonoBehaviour
         GameObject.Find("Cash").GetComponent<Text>().text = "Cash: $" + PlayerPrefs.GetInt("money");
         pastWave = PlayerPrefs.GetInt("wave");
         currentWave = pastWave;
+        
     }
 
     void OnApplicationQuit()
@@ -39,6 +41,8 @@ public class GunShopManager : MonoBehaviour
         if (PlayerPrefs.GetInt("money") >= 50) {
             int money = PlayerPrefs.GetInt("money");
             PlayerPrefs.SetInt("money", money - 50);
+            player.GetComponent<Player>().currentWeapon = 2;
+            player.GetComponent<Player>().SwitchWeapon();
         }
     }
 

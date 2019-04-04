@@ -14,7 +14,7 @@ public class Player : MonoBehaviour
     CameraShake shake;
     private AudioSource source;
     GameObject[] weaponList;
-    int currentWeapon = 0;
+    public int currentWeapon = 0;
     GameObject jokeWeapon;
 
     // Start is called before the first frame update
@@ -31,12 +31,26 @@ public class Player : MonoBehaviour
         weaponList[currentWeapon].SetActive(true);
         jokeWeapon = GameObject.FindGameObjectWithTag("JokeWeapon");
         jokeWeapon.SetActive(false);
+
+        Debug.Log(weaponList[0]);
+        Debug.Log(weaponList[1]);
+        Debug.Log(weaponList[2]);
     }
 
     // Update is called once per frame
     void Update()
     {
-        SwitchWeapon();
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            SwitchWeapon();
+        }
+
+
+        if (Input.GetKeyDown(KeyCode.J))
+        {
+            weaponList[currentWeapon].SetActive(false);
+            jokeWeapon.SetActive(true);
+        }
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -68,23 +82,15 @@ public class Player : MonoBehaviour
         UnityEngine.SceneManagement.SceneManager.LoadScene("GameOver");
     }
 
-    void SwitchWeapon()
+    public void SwitchWeapon()
     {
-        if (Input.GetKeyDown(KeyCode.E))
+        jokeWeapon.SetActive(false);
+        weaponList[currentWeapon].SetActive(false);
+        currentWeapon++;
+        if (currentWeapon >= weaponList.Length)
         {
-            jokeWeapon.SetActive(false);
-            weaponList[currentWeapon].SetActive(false);
-            currentWeapon++;
-            if (currentWeapon >= weaponList.Length)
-            {
-                currentWeapon = 0;
-            }
-            weaponList[currentWeapon].SetActive(true);
+            currentWeapon = 0;
         }
-        if (Input.GetKeyDown(KeyCode.J))
-        {
-            weaponList[currentWeapon].SetActive(false);
-            jokeWeapon.SetActive(true);
-        }
+        weaponList[currentWeapon].SetActive(true);
     }
 }
