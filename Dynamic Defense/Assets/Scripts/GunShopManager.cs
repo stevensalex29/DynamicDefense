@@ -13,7 +13,6 @@ public class GunShopManager : MonoBehaviour
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
         GameObject.Find("WaveBeatText").GetComponent<Text>().text = "You Beat Wave " + PlayerPrefs.GetInt("wave") + ", your score is " + PlayerPrefs.GetInt("score");
-        GameObject.Find("Cash").GetComponent<Text>().text = "Cash: $" + PlayerPrefs.GetInt("money");
         pastWave = PlayerPrefs.GetInt("wave");
         currentWave = pastWave;
     }
@@ -26,6 +25,7 @@ public class GunShopManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        GameObject.Find("Cash").GetComponent<Text>().text = "Cash: $" + PlayerPrefs.GetInt("money");
         if (pastWave == currentWave)
         {
             currentWave = pastWave + 1;
@@ -39,6 +39,7 @@ public class GunShopManager : MonoBehaviour
         if (PlayerPrefs.GetInt("money") >= 50) {
             int money = PlayerPrefs.GetInt("money");
             PlayerPrefs.SetInt("money", money - 50);
+            GunCheck.gunCheck.currentPrimary = "Rifle";
         }
     }
 
@@ -49,6 +50,7 @@ public class GunShopManager : MonoBehaviour
         {
             int money = PlayerPrefs.GetInt("money");
             PlayerPrefs.SetInt("money", money - 60);
+            GunCheck.gunCheck.currentPrimary = "Shotgun";
         }
     }
 
@@ -69,6 +71,7 @@ public class GunShopManager : MonoBehaviour
         {
             int money = PlayerPrefs.GetInt("money");
             PlayerPrefs.SetInt("money", money - 20);
+            GunCheck.gunCheck.currentSecondary = "Revolver";
         }
     }
 }

@@ -14,8 +14,10 @@ public class Player : MonoBehaviour
     CameraShake shake;
     private AudioSource source;
     GameObject[] weaponList;
+    List<GameObject> weapons = new List<GameObject>();
     int currentWeapon = 0;
     GameObject jokeWeapon;
+    GunCheck gunCheck;
 
     // Start is called before the first frame update
     void Start()
@@ -23,13 +25,22 @@ public class Player : MonoBehaviour
         health = 1.0f;
         shake = gameObject.GetComponent<CameraShake>();
         source = GameObject.Find("AudioSource").GetComponent<AudioSource>();
+        gunCheck = GunCheck.gunCheck;
         weaponList = GameObject.FindGameObjectsWithTag("Weapon");
         foreach (GameObject weapon in weaponList)
         {
             weapon.SetActive(false);
+            if (weapon.name == gunCheck.currentPrimary)
+            {
+                weapons.Add(weapon);
+                weapon.SetActive(true);
+            }
+            else if (weapon.name == gunCheck.currentSecondary)
+            {
+                weapons.Add(weapon);
+            }
         }
-        weaponList[currentWeapon].SetActive(true);
-        jokeWeapon = GameObject.FindGameObjectWithTag("JokeWeapon");
+        jokeWeapon = GameObject.FindGameObjectWithTag("JokeGun");
         jokeWeapon.SetActive(false);
     }
 
@@ -73,17 +84,17 @@ public class Player : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.E))
         {
             jokeWeapon.SetActive(false);
-            weaponList[currentWeapon].SetActive(false);
+            weapons[currentWeapon].SetActive(false);
             currentWeapon++;
-            if (currentWeapon >= weaponList.Length)
+            if (currentWeapon >= weapons.Count)
             {
                 currentWeapon = 0;
             }
-            weaponList[currentWeapon].SetActive(true);
+            weapons[currentWeapon].SetActive(true);
         }
         if (Input.GetKeyDown(KeyCode.J))
         {
-            weaponList[currentWeapon].SetActive(false);
+            weapons[currentWeapon].SetActive(false);
             jokeWeapon.SetActive(true);
         }
     }
