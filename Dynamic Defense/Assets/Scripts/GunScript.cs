@@ -59,6 +59,13 @@ public class GunScript : MonoBehaviour
             ammoMax = 10;
             reloadSpeed = 0.75f;
         }
+        else if (gameObject.name == "JokeGun")
+        {
+            rapid = false;
+            fireRate = 0;
+            ammoMax = 10;
+            reloadSpeed = 0.75f;
+        }
         ammo = ammoMax;
     }
 

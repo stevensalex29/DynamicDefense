@@ -42,6 +42,7 @@ public class Player : MonoBehaviour
         }
         jokeWeapon = GameObject.FindGameObjectWithTag("JokeGun");
         jokeWeapon.SetActive(false);
+        GameObject.Find("GunName").GetComponent<Text>().text = weapons[currentWeapon].name;
     }
 
     // Update is called once per frame
@@ -91,11 +92,14 @@ public class Player : MonoBehaviour
                 currentWeapon = 0;
             }
             weapons[currentWeapon].SetActive(true);
+            GameObject.Find("GunName").GetComponent<Text>().text = weapons[currentWeapon].name;
         }
         if (Input.GetKeyDown(KeyCode.J))
         {
             weapons[currentWeapon].SetActive(false);
             jokeWeapon.SetActive(true);
+            GameObject.Find("GunName").GetComponent<Text>().text = "Joke Gun";
         }
+        
     }
 }
