@@ -9,6 +9,7 @@ public class GunScript : MonoBehaviour
     public Transform startPos;
     public AudioClip bulletSound;
     private AudioSource source;
+    private GameObject crosshair;
 
     float timer = 0;
     float fireRate = 0.5f;
@@ -23,6 +24,8 @@ public class GunScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        crosshair = GameObject.Find("Crosshair");
+        GameObject.Find("Reload").GetComponent<Image>().fillAmount = 0;
         source = GameObject.Find("AudioSource").GetComponent<AudioSource>();
         if (gameObject.name == "DiskGun")
         {
@@ -74,16 +77,21 @@ public class GunScript : MonoBehaviour
     {
         if (ammo == 0)
         {
-            GameObject.Find("Reload").GetComponent<Text>().text = "Realoading " + ((reloadTime/reloadSpeed) * 100.0f).ToString("F0") + "%";
+            crosshair.SetActive(false);
+            GameObject.Find("Reload").GetComponent<Image>().fillAmount = reloadTime/reloadSpeed;
             reloadTime += Time.deltaTime;
             if (reloadTime >= reloadSpeed)
             {
                 ammo = ammoMax;
                 reloadTime = 0;
-                GameObject.Find("Reload").GetComponent<Text>().text = "";
+                GameObject.Find("Reload").GetComponent<Image>().fillAmount = 0;
+                crosshair.SetActive(true);
             }
         }
         GameObject.Find("Ammo").GetComponent<Text>().text = "Ammo: " + ammo + "/" + ammoMax;
+        if(ammo == 1) GameObject.Find("AmmoBar").GetComponent<Image>().fillAmount = .1f;
+        else GameObject.Find("AmmoBar").GetComponent<Image>().fillAmount = (float)ammo / ammoMax;
+        Debug.Log(ammo / ammoMax);
 
         timer += Time.deltaTime;
         if (timer >= fireRate)

@@ -63,13 +63,13 @@ public class Player : MonoBehaviour
             if(health>=0.0f)source.PlayOneShot(hurtSound, 0.3f);
             if (health <= 0.0f && !deathPanel.activeSelf) // if health is zero, game over
             {
-                GameObject.Find("Health").GetComponent<Text>().text = "HP 0%";
+                GameObject.Find("Health").GetComponent<Image>().fillAmount = health;
                 deathPanel.SetActive(true);
                 Invoke("changeScene", 2.0f);
             }
             else // otherwise display new health
             {
-                if(!deathPanel.activeSelf)GameObject.Find("Health").GetComponent<Text>().text = "HP " + Mathf.CeilToInt(health * 100) + "%";
+                if(!deathPanel.activeSelf)GameObject.Find("Health").GetComponent<Image>().fillAmount = health;
             }
         }
     }
