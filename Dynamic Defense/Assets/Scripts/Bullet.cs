@@ -19,7 +19,11 @@ public class Bullet : MonoBehaviour
     // Destroy gameobject when it collides
     private void OnCollisionEnter(Collision collision)
     {
+        if (collision.gameObject.tag == "Bullet")
+            return;
+        
         if (collision.gameObject.tag != "Player" && gameObject.tag != "JokeBullet")
             Destroy(gameObject);
+
     }
 }
