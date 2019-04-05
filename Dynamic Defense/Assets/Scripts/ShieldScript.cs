@@ -37,8 +37,8 @@ public class ShieldScript : MonoBehaviour
     {
         temp = GetMouseHoverObject(10);
         timer += Time.deltaTime;
-        percent = ((timer / 3.00f) * 100);
-        GameObject.Find("Cooldown").GetComponent<Text>().text = "Force Push Cooldown:  " + Mathf.FloorToInt(percent) +"%";
+        percent = timer / 3.00f;
+        GameObject.Find("PushCooldown").GetComponent<Image>().fillAmount = percent;
         if (timer >= 3.00f)
         {
             timer = 3.00f;
