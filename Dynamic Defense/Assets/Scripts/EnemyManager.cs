@@ -22,10 +22,19 @@ public class EnemyManager : MonoBehaviour
 
         for (int i = 0;i<enemiesLeft;i++)
         {
-
-            GameObject g = Instantiate(enemy1, enemySpawns[UnityEngine.Random.Range(0,enemySpawns.Length)].transform.position,Quaternion.identity);
+            int enemySpawner = UnityEngine.Random.Range(0, enemySpawns.Length);
+            /*
+            if(canSpawn(enemySpawner))
+            {
+                GameObject g = Instantiate(enemy1, enemySpawns[enemySpawner].transform.position, Quaternion.identity);
+                g.GetComponent<Enemy>().setSpeed(2.0f);
+                enemyList.Add(g);
+            }
+            */
+            GameObject g = Instantiate(enemy1, enemySpawns[enemySpawner].transform.position, Quaternion.identity);
             g.GetComponent<Enemy>().setSpeed(2.0f);
             enemyList.Add(g);
+
         }
         
     }
@@ -61,4 +70,23 @@ public class EnemyManager : MonoBehaviour
     {
         return new Vector3(UnityEngine.Random.Range(-35.0f, 35.0f), .5f, UnityEngine.Random.Range(-35.0f, 35.0f));
     }
+    public bool canSpawn(int i)
+    {
+        Collider col = enemySpawns[i].GetComponent<Collider>();
+        for(int j =0;j<enemyList.Count;j++)
+        {
+            if (col.bounds.Intersects(enemyList[j].GetComponent<Collider>().bounds))
+            {
+                return false;
+
+            }
+            else
+            {
+                return true;
+            }
+        }
+        return true;
+        
+    }
+
 }
