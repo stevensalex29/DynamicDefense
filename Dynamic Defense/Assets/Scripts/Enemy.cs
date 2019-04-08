@@ -7,7 +7,6 @@ public class Enemy : MonoBehaviour
     public GameObject deathParticle;
     public AudioClip deathSound;
     private AudioSource source;
-
     private float speed;
     // Start is called before the first frame update
     void Start()
@@ -18,8 +17,10 @@ public class Enemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        float xvalue = 0.0f;
+        float zvalue = 0.0f;
         float step = Time.deltaTime * speed;
-        gameObject.transform.position = Vector3.MoveTowards(gameObject.transform.position, new Vector3 (0.0f,1f,0.0f), step);
+        gameObject.transform.position = Vector3.MoveTowards(gameObject.transform.position, new Vector3(xvalue, 1f, zvalue), step);
     }
     private void OnCollisionEnter(Collision collision)
     {

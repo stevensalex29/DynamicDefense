@@ -103,7 +103,6 @@ public class GunScript : MonoBehaviour
         GameObject.Find("Ammo").GetComponent<Text>().text = "Ammo: " + ammo + "/" + ammoMax;
         if(ammo == 1) GameObject.Find("AmmoBar").GetComponent<Image>().fillAmount = .1f;
         else GameObject.Find("AmmoBar").GetComponent<Image>().fillAmount = (float)ammo / ammoMax;
-        Debug.Log(ammo / ammoMax);
 
         //Shoot delay
         timer += Time.deltaTime;
