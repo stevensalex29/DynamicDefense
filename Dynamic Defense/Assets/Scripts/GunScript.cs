@@ -22,6 +22,8 @@ public class GunScript : MonoBehaviour
     float reloadTime = 0;
     float reloadSpeed;
 
+    public int damage;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -34,6 +36,7 @@ public class GunScript : MonoBehaviour
             fireRate = 0.3f;
             ammoMax = 15;
             reloadSpeed = 3.0f;
+            damage = 1;
         }
         else if (gameObject.name == "Rifle")
         {
@@ -41,6 +44,7 @@ public class GunScript : MonoBehaviour
             fireRate = 0.15f;
             ammoMax = 30;
             reloadSpeed = 2.0f;
+            damage = 1;
         }
         else if (gameObject.name == "Pistol")
         {
@@ -48,6 +52,7 @@ public class GunScript : MonoBehaviour
             fireRate = 0;
             ammoMax = 20;
             reloadSpeed = 1.5f;
+            damage = 1;
         }
         else if (gameObject.name == "Revolver")
         {
@@ -55,6 +60,7 @@ public class GunScript : MonoBehaviour
             fireRate = 0;
             ammoMax = 8;
             reloadSpeed = 0.75f;
+            damage = 1;
         }
         else if (gameObject.name == "Shotgun")
         {
@@ -62,6 +68,7 @@ public class GunScript : MonoBehaviour
             fireRate = 0;
             ammoMax = 10;
             reloadSpeed = 1.0f;
+            damage = 1;
         }
         else if (gameObject.name == "JokeGun")
         {
@@ -69,6 +76,7 @@ public class GunScript : MonoBehaviour
             fireRate = 0;
             ammoMax = 10;
             reloadSpeed = 0.1f;
+            damage = 1;
         }
         ammo = ammoMax;
     }
