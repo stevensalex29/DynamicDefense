@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GunCheck : MonoBehaviour
 {
@@ -21,6 +22,16 @@ public class GunCheck : MonoBehaviour
         else
         {
             Destroy(gameObject);
+        }
+    }
+
+    private void Update()
+    {
+        if(SceneManager.GetActiveScene().name == "MainMenu" || SceneManager.GetActiveScene().name == "GameOver")
+        {
+            currentPrimary = "DiskGun";
+            currentSecondary = "Pistol";
+            gunBought = new List<string> { "DiskGun", "Pistol" };
         }
     }
 }
