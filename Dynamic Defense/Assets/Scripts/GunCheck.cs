@@ -9,6 +9,8 @@ public class GunCheck : MonoBehaviour
     public string currentPrimary = "DiskGun";
     public string currentSecondary = "Pistol";
 
+    public List<string> gunBought = new List<string> { "DiskGun", "Pistol" };
+
     void Awake()
     {
         if (gunCheck == null)

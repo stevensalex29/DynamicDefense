@@ -18,6 +18,7 @@ public class GunScript : MonoBehaviour
     bool rapid;
     int ammo;
     int ammoMax;
+    public bool reloading = false;
     float reloadTime = 0;
     float reloadSpeed;
 
@@ -32,7 +33,7 @@ public class GunScript : MonoBehaviour
             rapid = true;
             fireRate = 0.3f;
             ammoMax = 15;
-            reloadSpeed = 1.0f;
+            reloadSpeed = 3.0f;
         }
         else if (gameObject.name == "Rifle")
         {
@@ -46,28 +47,28 @@ public class GunScript : MonoBehaviour
             rapid = false;
             fireRate = 0;
             ammoMax = 20;
-            reloadSpeed = 1.0f;
+            reloadSpeed = 1.5f;
         }
         else if (gameObject.name == "Revolver")
         {
             rapid = false;
             fireRate = 0;
             ammoMax = 8;
-            reloadSpeed = 0.5f;
+            reloadSpeed = 0.75f;
         }
         else if (gameObject.name == "Shotgun")
         {
             rapid = false;
             fireRate = 0;
             ammoMax = 10;
-            reloadSpeed = 0.75f;
+            reloadSpeed = 1.0f;
         }
         else if (gameObject.name == "JokeGun")
         {
             rapid = false;
             fireRate = 0;
             ammoMax = 10;
-            reloadSpeed = 0.75f;
+            reloadSpeed = 0.1f;
         }
         ammo = ammoMax;
     }
@@ -75,7 +76,15 @@ public class GunScript : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (ammo == 0)
+        //Manual reload
+        if (Input.GetKeyDown(KeyCode.R) && ammo != ammoMax)
+        {
+            ammo = 0;
+            reloading = true;
+        }
+
+        //Reload
+        if (reloading)
         {
             crosshair.SetActive(false);
             GameObject.Find("Reload").GetComponent<Image>().fillAmount = reloadTime/reloadSpeed;
@@ -84,15 +93,19 @@ public class GunScript : MonoBehaviour
             {
                 ammo = ammoMax;
                 reloadTime = 0;
+                reloading = false;
                 GameObject.Find("Reload").GetComponent<Image>().fillAmount = 0;
                 crosshair.SetActive(true);
             }
         }
+
+        //Update reload text
         GameObject.Find("Ammo").GetComponent<Text>().text = "Ammo: " + ammo + "/" + ammoMax;
         if(ammo == 1) GameObject.Find("AmmoBar").GetComponent<Image>().fillAmount = .1f;
         else GameObject.Find("AmmoBar").GetComponent<Image>().fillAmount = (float)ammo / ammoMax;
         Debug.Log(ammo / ammoMax);
 
+        //Shoot delay
         timer += Time.deltaTime;
         if (timer >= fireRate)
         {
@@ -100,6 +113,7 @@ public class GunScript : MonoBehaviour
             timer = 0;
         }
 
+        //Check rapid fire
         if (rapid)
         {
             if (Input.GetMouseButton(0))
@@ -158,6 +172,8 @@ public class GunScript : MonoBehaviour
                 //bullet4.GetComponent<Rigidbody>().AddForce(shot4Pos * 3500.0f);
                 ammo--;
                 canShoot = false;
+                if (ammo == 0)
+                    reloading = true;
             }
             else
             {
@@ -166,6 +182,8 @@ public class GunScript : MonoBehaviour
                 newBullet.GetComponent<Rigidbody>().AddForce(Camera.main.transform.forward * 3500.0f);
                 ammo--;
                 canShoot = false;
+                if (ammo == 0)
+                    reloading = true;
             }
             
         }

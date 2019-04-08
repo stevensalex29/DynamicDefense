@@ -48,7 +48,8 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        SwitchWeapon();
+        if (!GameObject.FindGameObjectWithTag("Weapon").GetComponent<GunScript>().reloading)
+            SwitchWeapon();
     }
 
     private void OnCollisionEnter(Collision collision)

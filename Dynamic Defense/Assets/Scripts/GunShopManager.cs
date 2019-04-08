@@ -7,6 +7,9 @@ public class GunShopManager : MonoBehaviour
 {
     private int pastWave;
     private int currentWave;
+
+    GameObject currentPri;
+    GameObject currentSec;
     // Start is called before the first frame update
     void Start()
     {
@@ -15,6 +18,26 @@ public class GunShopManager : MonoBehaviour
         GameObject.Find("WaveBeatText").GetComponent<Text>().text = "You Beat Wave " + PlayerPrefs.GetInt("wave") + ", your score is " + PlayerPrefs.GetInt("score");
         pastWave = PlayerPrefs.GetInt("wave");
         currentWave = pastWave;
+
+        currentPri = GameObject.Find("CurrentPrimary");
+        currentSec = GameObject.Find("CurrentSecondary");
+
+        foreach (string gun in GunCheck.gunCheck.gunBought)
+        {
+            if (gun == "Rifle")
+                GameObject.Find("Rifle").GetComponentInChildren<Text>().text = "Rifle";
+            else if (gun == "Shotgun")
+                GameObject.Find("Shotgun").GetComponentInChildren<Text>().text = "Shotgun";
+            else if (gun == "LazerRifle")
+                GameObject.Find("LazerRifle").GetComponentInChildren<Text>().text = "LazerRifle";
+            else if (gun == "Revolver")
+                GameObject.Find("Revolver").GetComponentInChildren<Text>().text = "Revolver";
+
+            if (GunCheck.gunCheck.currentPrimary == gun)
+                currentPri.GetComponent<RectTransform>().localPosition = GameObject.Find(gun).GetComponent<RectTransform>().localPosition;
+            if (GunCheck.gunCheck.currentSecondary == gun)
+                currentSec.GetComponent<RectTransform>().localPosition = GameObject.Find(gun).GetComponent<RectTransform>().localPosition;
+        }
     }
 
     void OnApplicationQuit()
@@ -33,45 +56,90 @@ public class GunShopManager : MonoBehaviour
         }
     }
 
+    public void DiskGun()
+    {
+        GunCheck.gunCheck.currentPrimary = "DiskGun";
+        currentPri.GetComponent<RectTransform>().localPosition = GameObject.Find("DiskGun").GetComponent<RectTransform>().localPosition;
+    }
+
+    public void Pistol()
+    {
+        GunCheck.gunCheck.currentSecondary = "Pistol";
+        currentSec.GetComponent<RectTransform>().localPosition = GameObject.Find("Pistol").GetComponent<RectTransform>().localPosition;
+    }
+
     // Purchase Rifle
     public void Rifle()
     {
-        if (PlayerPrefs.GetInt("money") >= 50) {
+        if (PlayerPrefs.GetInt("money") >= 5 && !GunCheck.gunCheck.gunBought.Contains("Rifle")) {
             int money = PlayerPrefs.GetInt("money");
-            PlayerPrefs.SetInt("money", money - 50);
+            PlayerPrefs.SetInt("money", money - 5);
             GunCheck.gunCheck.currentPrimary = "Rifle";
+            GunCheck.gunCheck.gunBought.Add("Rifle");
+            currentPri.GetComponent<RectTransform>().localPosition = GameObject.Find("Rifle").GetComponent<RectTransform>().localPosition;
+            GameObject.Find("Rifle").GetComponentInChildren<Text>().text = "Rifle";
+        }
+        else if (GunCheck.gunCheck.gunBought.Contains("Rifle"))
+        {
+            GunCheck.gunCheck.currentPrimary = "Rifle";
+            currentPri.GetComponent<RectTransform>().localPosition = GameObject.Find("Rifle").GetComponent<RectTransform>().localPosition;
         }
     }
 
     // Purchase Shotgun
     public void Shotgun()
     {
-        if (PlayerPrefs.GetInt("money") >= 60)
+        if (PlayerPrefs.GetInt("money") >= 6 && !GunCheck.gunCheck.gunBought.Contains("Shotgun"))
         {
             int money = PlayerPrefs.GetInt("money");
-            PlayerPrefs.SetInt("money", money - 60);
+            PlayerPrefs.SetInt("money", money - 6);
             GunCheck.gunCheck.currentPrimary = "Shotgun";
+            GunCheck.gunCheck.gunBought.Add("Shotgun");
+            currentPri.GetComponent<RectTransform>().localPosition = GameObject.Find("Shotgun").GetComponent<RectTransform>().localPosition;
+            GameObject.Find("Shotgun").GetComponentInChildren<Text>().text = "Shotgun";
+        }
+        else if (GunCheck.gunCheck.gunBought.Contains("Shotgun"))
+        {
+            GunCheck.gunCheck.currentPrimary = "Shotgun";
+            currentPri.GetComponent<RectTransform>().localPosition = GameObject.Find("Shotgun").GetComponent<RectTransform>().localPosition;
         }
     }
 
     // Purchase Lazer Rifle
     public void LazerRifle()
     {
-        if (PlayerPrefs.GetInt("money") >= 200)
+        if (PlayerPrefs.GetInt("money") >= 20 && !GunCheck.gunCheck.gunBought.Contains("LazerRifle"))
         {
             int money = PlayerPrefs.GetInt("money");
-            PlayerPrefs.SetInt("money", money - 200);
+            PlayerPrefs.SetInt("money", money - 20);
+            GunCheck.gunCheck.currentPrimary = "LazerRifle";
+            GunCheck.gunCheck.gunBought.Add("LazerRifle");
+            currentPri.GetComponent<RectTransform>().localPosition = GameObject.Find("LazerRifle").GetComponent<RectTransform>().localPosition;
+            GameObject.Find("LazerRifle").GetComponentInChildren<Text>().text = "LazerRifle";
+        }
+        else if (GunCheck.gunCheck.gunBought.Contains("LazerRifle"))
+        {
+            GunCheck.gunCheck.currentPrimary = "LazerRifle";
+            currentPri.GetComponent<RectTransform>().localPosition = GameObject.Find("LazerRifle").GetComponent<RectTransform>().localPosition;
         }
     }
 
     // Purchase Revolver
     public void Revolver()
     {
-        if (PlayerPrefs.GetInt("money") >= 20)
+        if (PlayerPrefs.GetInt("money") >= 2 && !GunCheck.gunCheck.gunBought.Contains("Revolver"))
         {
             int money = PlayerPrefs.GetInt("money");
-            PlayerPrefs.SetInt("money", money - 20);
+            PlayerPrefs.SetInt("money", money - 2);
             GunCheck.gunCheck.currentSecondary = "Revolver";
+            GunCheck.gunCheck.gunBought.Add("Revolver");
+            currentSec.GetComponent<RectTransform>().localPosition = GameObject.Find("Revolver").GetComponent<RectTransform>().localPosition;
+            GameObject.Find("Revolver").GetComponentInChildren<Text>().text = "Revolver";
+        }
+        else if (GunCheck.gunCheck.gunBought.Contains("Revolver"))
+        {
+            GunCheck.gunCheck.currentSecondary = "Revolver";
+            currentSec.GetComponent<RectTransform>().localPosition = GameObject.Find("Revolver").GetComponent<RectTransform>().localPosition;
         }
     }
 }
