@@ -1165,7 +1165,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Shotgun - $60
+  m_Text: Shotgun - $100
 --- !u!222 &929823652
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2712,7 +2712,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Revolver - $20
+  m_Text: Revolver - $25
 --- !u!222 &1642189204
 CanvasRenderer:
   m_ObjectHideFlags: 0

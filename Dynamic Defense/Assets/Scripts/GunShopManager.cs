@@ -15,7 +15,7 @@ public class GunShopManager : MonoBehaviour
     {
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
-        GameObject.Find("WaveBeatText").GetComponent<Text>().text = "You Beat Wave " + PlayerPrefs.GetInt("wave") + ", your score is " + PlayerPrefs.GetInt("score");
+        GameObject.Find("WaveBeatText").GetComponent<Text>().text = "You Beat Wave " + (PlayerPrefs.GetInt("wave") + 1) + ", your score is " + PlayerPrefs.GetInt("score");
         pastWave = PlayerPrefs.GetInt("wave");
         currentWave = pastWave;
 
@@ -71,9 +71,9 @@ public class GunShopManager : MonoBehaviour
     // Purchase Rifle
     public void Rifle()
     {
-        if (PlayerPrefs.GetInt("money") >= 5 && !GunCheck.gunCheck.gunBought.Contains("Rifle")) {
+        if (PlayerPrefs.GetInt("money") >= 50 && !GunCheck.gunCheck.gunBought.Contains("Rifle")) {
             int money = PlayerPrefs.GetInt("money");
-            PlayerPrefs.SetInt("money", money - 5);
+            PlayerPrefs.SetInt("money", money - 50);
             GunCheck.gunCheck.currentPrimary = "Rifle";
             GunCheck.gunCheck.gunBought.Add("Rifle");
             currentPri.GetComponent<RectTransform>().localPosition = GameObject.Find("Rifle").GetComponent<RectTransform>().localPosition;
@@ -89,10 +89,10 @@ public class GunShopManager : MonoBehaviour
     // Purchase Shotgun
     public void Shotgun()
     {
-        if (PlayerPrefs.GetInt("money") >= 6 && !GunCheck.gunCheck.gunBought.Contains("Shotgun"))
+        if (PlayerPrefs.GetInt("money") >= 100 && !GunCheck.gunCheck.gunBought.Contains("Shotgun"))
         {
             int money = PlayerPrefs.GetInt("money");
-            PlayerPrefs.SetInt("money", money - 6);
+            PlayerPrefs.SetInt("money", money - 100);
             GunCheck.gunCheck.currentPrimary = "Shotgun";
             GunCheck.gunCheck.gunBought.Add("Shotgun");
             currentPri.GetComponent<RectTransform>().localPosition = GameObject.Find("Shotgun").GetComponent<RectTransform>().localPosition;
@@ -108,10 +108,10 @@ public class GunShopManager : MonoBehaviour
     // Purchase Lazer Rifle
     public void LazerRifle()
     {
-        if (PlayerPrefs.GetInt("money") >= 20 && !GunCheck.gunCheck.gunBought.Contains("LazerRifle"))
+        if (PlayerPrefs.GetInt("money") >= 200 && !GunCheck.gunCheck.gunBought.Contains("LazerRifle"))
         {
             int money = PlayerPrefs.GetInt("money");
-            PlayerPrefs.SetInt("money", money - 20);
+            PlayerPrefs.SetInt("money", money - 200);
             GunCheck.gunCheck.currentPrimary = "LazerRifle";
             GunCheck.gunCheck.gunBought.Add("LazerRifle");
             currentPri.GetComponent<RectTransform>().localPosition = GameObject.Find("LazerRifle").GetComponent<RectTransform>().localPosition;
@@ -127,10 +127,10 @@ public class GunShopManager : MonoBehaviour
     // Purchase Revolver
     public void Revolver()
     {
-        if (PlayerPrefs.GetInt("money") >= 2 && !GunCheck.gunCheck.gunBought.Contains("Revolver"))
+        if (PlayerPrefs.GetInt("money") >= 25 && !GunCheck.gunCheck.gunBought.Contains("Revolver"))
         {
             int money = PlayerPrefs.GetInt("money");
-            PlayerPrefs.SetInt("money", money - 2);
+            PlayerPrefs.SetInt("money", money - 25);
             GunCheck.gunCheck.currentSecondary = "Revolver";
             GunCheck.gunCheck.gunBought.Add("Revolver");
             currentSec.GetComponent<RectTransform>().localPosition = GameObject.Find("Revolver").GetComponent<RectTransform>().localPosition;
