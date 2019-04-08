@@ -15,7 +15,7 @@ public class GunShopManager : MonoBehaviour
     {
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
-        GameObject.Find("WaveBeatText").GetComponent<Text>().text = "You Beat Wave " + (PlayerPrefs.GetInt("wave") + 1) + ", your score is " + PlayerPrefs.GetInt("score");
+        GameObject.Find("WaveBeatText").GetComponent<Text>().text = "You Beat Wave " + PlayerPrefs.GetInt("wave") + ", your score is " + PlayerPrefs.GetInt("score");
         pastWave = PlayerPrefs.GetInt("wave");
         currentWave = pastWave;
 
