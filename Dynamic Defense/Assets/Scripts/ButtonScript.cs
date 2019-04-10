@@ -35,6 +35,12 @@ public class ButtonScript : MonoBehaviour
         Application.Quit();
     }
 
+    // Help
+    public void Help()
+    {
+        UnityEngine.SceneManagement.SceneManager.LoadScene("Help");
+    }
+
     // go to gun shop
     public void GunStore() {
         UnityEngine.SceneManagement.SceneManager.LoadScene("GunShop");
