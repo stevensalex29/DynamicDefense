@@ -30,17 +30,7 @@ public class EnemyManager : MonoBehaviour
                 g.GetComponent<Enemy>().setSpeed(2.0f);
                 enemyList.Add(g);
             }
-            /*
-            if(canSpawn(enemySpawner))
-            {
-                GameObject g = Instantiate(enemy1, enemySpawns[enemySpawner].transform.position, Quaternion.identity);
-                g.GetComponent<Enemy>().setSpeed(2.0f);
-                enemyList.Add(g);
-            }
-            */
-            //GameObject g = Instantiate(enemy1, enemySpawns[enemySpawner].transform.position, Quaternion.identity);
-            //g.GetComponent<Enemy>().setSpeed(2.0f);
-            //enemyList.Add(g);
+            
 
         }
         
@@ -49,17 +39,25 @@ public class EnemyManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
         for (int i = 0; i < enemyList.Count; i++)
         {
+            
             if (enemyList[i] == null)
             {
                 enemyList.Remove(enemyList[i]);
                 enemiesLeft--;
+                return;
+            }
+            if (enemyList[i].gameObject.transform.position.y < -50)
+            {
+                int enemySpawner = UnityEngine.Random.Range(0, enemySpawns.Length);
+                enemyList[i].transform.position = enemySpawns[enemySpawner].transform.position;
             }
 
         }
         GameObject.Find("EnemyLeft").GetComponent<Text>().text = "Enemies Left: " + enemiesLeft;
-
+        
         if (enemiesLeft == 0)
         {
             if(!GameObject.Find("Player").GetComponent<Player>().deathPanel.activeSelf)Invoke("changeScene", 2.0f);
