@@ -3271,5 +3271,16 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Weapon
       objectReference: {fileID: 0}
+    - target: {fileID: 3077548172181053289, guid: 843df01aa4facd843bf90705200a9d97,
+        type: 3}
+      propertyPath: m_TagString
+      value: Weapon
+      objectReference: {fileID: 0}
+    - target: {fileID: 1222176424552759167, guid: 843df01aa4facd843bf90705200a9d97,
+        type: 3}
+      propertyPath: bullet
+      value: 
+      objectReference: {fileID: 6815927415538989402, guid: 68dd3dc64b6196244a6452f488665062,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 843df01aa4facd843bf90705200a9d97, type: 3}

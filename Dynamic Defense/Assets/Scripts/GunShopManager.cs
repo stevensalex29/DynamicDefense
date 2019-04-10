@@ -28,8 +28,8 @@ public class GunShopManager : MonoBehaviour
                 GameObject.Find("Rifle").GetComponentInChildren<Text>().text = "Rifle";
             else if (gun == "Shotgun")
                 GameObject.Find("Shotgun").GetComponentInChildren<Text>().text = "Shotgun";
-            else if (gun == "LazerRifle")
-                GameObject.Find("LazerRifle").GetComponentInChildren<Text>().text = "LazerRifle";
+            else if (gun == "Laser")
+                GameObject.Find("Laser").GetComponentInChildren<Text>().text = "Laser";
             else if (gun == "Revolver")
                 GameObject.Find("Revolver").GetComponentInChildren<Text>().text = "Revolver";
 
@@ -105,22 +105,22 @@ public class GunShopManager : MonoBehaviour
         }
     }
 
-    // Purchase Lazer Rifle
-    public void LazerRifle()
+    // Purchase Laser
+    public void Laser()
     {
-        if (PlayerPrefs.GetInt("money") >= 200 && !GunCheck.gunCheck.gunBought.Contains("LazerRifle"))
+        if (PlayerPrefs.GetInt("money") >= 200 && !GunCheck.gunCheck.gunBought.Contains("Laser"))
         {
             int money = PlayerPrefs.GetInt("money");
             PlayerPrefs.SetInt("money", money - 200);
-            GunCheck.gunCheck.currentPrimary = "LazerRifle";
-            GunCheck.gunCheck.gunBought.Add("LazerRifle");
-            currentPri.GetComponent<RectTransform>().localPosition = GameObject.Find("LazerRifle").GetComponent<RectTransform>().localPosition;
-            GameObject.Find("LazerRifle").GetComponentInChildren<Text>().text = "LazerRifle";
+            GunCheck.gunCheck.currentPrimary = "Laser";
+            GunCheck.gunCheck.gunBought.Add("Laser");
+            currentPri.GetComponent<RectTransform>().localPosition = GameObject.Find("Laser").GetComponent<RectTransform>().localPosition;
+            GameObject.Find("Laser").GetComponentInChildren<Text>().text = "Laser";
         }
-        else if (GunCheck.gunCheck.gunBought.Contains("LazerRifle"))
+        else if (GunCheck.gunCheck.gunBought.Contains("Laser"))
         {
-            GunCheck.gunCheck.currentPrimary = "LazerRifle";
-            currentPri.GetComponent<RectTransform>().localPosition = GameObject.Find("LazerRifle").GetComponent<RectTransform>().localPosition;
+            GunCheck.gunCheck.currentPrimary = "Laser";
+            currentPri.GetComponent<RectTransform>().localPosition = GameObject.Find("Laser").GetComponent<RectTransform>().localPosition;
         }
     }
 

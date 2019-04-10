@@ -236,11 +236,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 7677911673206941749, guid: cf9b49e3f754bbf4a85693c4352b29e9,
-        type: 3}
-      propertyPath: m_Name
-      value: Floor
-      objectReference: {fileID: 0}
     - target: {fileID: 7677911673206941748, guid: cf9b49e3f754bbf4a85693c4352b29e9,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -295,6 +290,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7677911673206941749, guid: cf9b49e3f754bbf4a85693c4352b29e9,
+        type: 3}
+      propertyPath: m_Name
+      value: Floor
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cf9b49e3f754bbf4a85693c4352b29e9, type: 3}
@@ -521,7 +521,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Lazer Rifle - $200
+  m_Text: Laser - $200
 --- !u!222 &565685556
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1895,6 +1895,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3077548172181053289, guid: 843df01aa4facd843bf90705200a9d97,
+        type: 3}
+      propertyPath: m_TagString
+      value: Weapon
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 843df01aa4facd843bf90705200a9d97, type: 3}
 --- !u!1 &1278110376
@@ -2514,7 +2519,7 @@ GameObject:
   - component: {fileID: 1604852714}
   - component: {fileID: 1604852717}
   m_Layer: 5
-  m_Name: LazerRifle
+  m_Name: Laser
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2581,7 +2586,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1604852717}
-        m_MethodName: LazerRifle
+        m_MethodName: Laser
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

@@ -47,6 +47,18 @@ public class Enemy : MonoBehaviour
             Destroy(gameObject);
             Debug.Log("Hit");
         }
+        else if (collision.gameObject.tag == "LaserBullet")
+        {
+            GameObject particle = Instantiate(deathParticle, gameObject.transform.position, deathParticle.transform.rotation) as GameObject;
+            source.PlayOneShot(deathSound, 0.05f);
+            // Update score
+            int score = PlayerPrefs.GetInt("score");
+            PlayerPrefs.SetInt("score", score + 10);
+            int money = PlayerPrefs.GetInt("money");
+            PlayerPrefs.SetInt("money", money + 1);
+            Destroy(gameObject);
+            Debug.Log("Hit");
+        }
         else if (collision.gameObject.tag == "RifleBullet")
         {
             GameObject particle = Instantiate(deathParticle, gameObject.transform.position, deathParticle.transform.rotation) as GameObject;

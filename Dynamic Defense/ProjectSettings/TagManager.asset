@@ -15,6 +15,7 @@ TagManager:
   - PistolBullet
   - RifleBullet
   - music
+  - LaserBullet
   layers:
   - Default
   - TransparentFX

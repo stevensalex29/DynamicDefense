@@ -70,6 +70,14 @@ public class GunScript : MonoBehaviour
             reloadSpeed = 1.0f;
             damage = 1;
         }
+        else if (gameObject.name == "Laser")
+        {
+            rapid = true;
+            fireRate = .05f;
+            ammoMax = 100;
+            reloadSpeed = 1.0f;
+            damage = 1;
+        }
         else if (gameObject.name == "JokeGun")
         {
             rapid = false;
