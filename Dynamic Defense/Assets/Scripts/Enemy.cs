@@ -35,7 +35,7 @@ public class Enemy : MonoBehaviour
             PlayerPrefs.SetInt("money", money + 1);
             Destroy(gameObject);
         }
-        if (collision.gameObject.name == "PistolBullet")
+        else if (collision.gameObject.tag == "PistolBullet")
         {
             GameObject particle = Instantiate(deathParticle, gameObject.transform.position, deathParticle.transform.rotation) as GameObject;
             source.PlayOneShot(deathSound, 0.05f);
@@ -47,7 +47,7 @@ public class Enemy : MonoBehaviour
             Destroy(gameObject);
             Debug.Log("Hit");
         }
-        if (collision.gameObject.name == "RifleBullet")
+        else if (collision.gameObject.tag == "RifleBullet")
         {
             GameObject particle = Instantiate(deathParticle, gameObject.transform.position, deathParticle.transform.rotation) as GameObject;
             source.PlayOneShot(deathSound, 0.05f);
@@ -58,7 +58,7 @@ public class Enemy : MonoBehaviour
             PlayerPrefs.SetInt("money", money + 1);
             Destroy(gameObject);
         }
-        if (collision.gameObject.name == "RevolverBullet")
+        else if (collision.gameObject.tag == "RevolverBullet")
         {
             GameObject particle = Instantiate(deathParticle, gameObject.transform.position, deathParticle.transform.rotation) as GameObject;
             source.PlayOneShot(deathSound, 0.05f);

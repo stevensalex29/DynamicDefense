@@ -11,6 +11,9 @@ TagManager:
   - Weapon
   - JokeBullet
   - JokeGun
+  - JokeWeapon
+  - PistolBullet
+  - RifleBullet
   layers:
   - Default
   - TransparentFX
