@@ -12,6 +12,7 @@ public class EnemyManager : MonoBehaviour
     private GameObject[] enemySpawns;
     private int waveNumber;
     private int enemiesLeft;
+    private int totalEnemy;
     // Start is called before the first frame update
     void Start()
     {
@@ -19,10 +20,16 @@ public class EnemyManager : MonoBehaviour
         waveNumber = PlayerPrefs.GetInt("wave");
         enemySpawns = GameObject.FindGameObjectsWithTag("EnemySpawn");
         enemiesLeft = 10 + ((waveNumber-1)*2);
-
-        for (int i = 0;i<enemiesLeft;i++)
+        totalEnemy = enemiesLeft;
+        for (int i = 0;i<totalEnemy; i++)
         {
             int enemySpawner = UnityEngine.Random.Range(0, enemySpawns.Length);
+            if(enemySpawns[enemySpawner].GetComponent<EnemySpawn>().canSpawn)
+            {
+                GameObject g = Instantiate(enemy1, enemySpawns[enemySpawner].transform.position, Quaternion.identity);
+                g.GetComponent<Enemy>().setSpeed(2.0f);
+                enemyList.Add(g);
+            }
             /*
             if(canSpawn(enemySpawner))
             {
@@ -31,9 +38,9 @@ public class EnemyManager : MonoBehaviour
                 enemyList.Add(g);
             }
             */
-            GameObject g = Instantiate(enemy1, enemySpawns[enemySpawner].transform.position, Quaternion.identity);
-            g.GetComponent<Enemy>().setSpeed(2.0f);
-            enemyList.Add(g);
+            //GameObject g = Instantiate(enemy1, enemySpawns[enemySpawner].transform.position, Quaternion.identity);
+            //g.GetComponent<Enemy>().setSpeed(2.0f);
+            //enemyList.Add(g);
 
         }
         
@@ -70,6 +77,7 @@ public class EnemyManager : MonoBehaviour
     {
         return new Vector3(UnityEngine.Random.Range(-35.0f, 35.0f), .5f, UnityEngine.Random.Range(-35.0f, 35.0f));
     }
+    /*
     public bool canSpawn(int i)
     {
         Collider col = enemySpawns[i].GetComponent<Collider>();
@@ -88,5 +96,6 @@ public class EnemyManager : MonoBehaviour
         return true;
         
     }
+    */
 
 }

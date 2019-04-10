@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class EnemySpawn : MonoBehaviour
 {
+    public bool canSpawn = true;
     // Start is called before the first frame update
     void Start()
     {
@@ -14,5 +15,11 @@ public class EnemySpawn : MonoBehaviour
     void Update()
     {
         
+    }
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.tag == "Enemy")
+            canSpawn = false;
+            return;
     }
 }

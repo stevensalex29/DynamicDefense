@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 6597059575584401220}
   - component: {fileID: 3260859630500087779}
   - component: {fileID: 2129416312805560211}
+  - component: {fileID: 4418845035559578629}
   m_Layer: 0
   m_Name: EnemySpawn
   m_TagString: EnemySpawn
@@ -28,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 3163647501778134266}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -62.637997, y: -160.63515, z: 41.709835}
-  m_LocalScale: {x: 1.9271, y: 3.6770995, z: 1.9271}
+  m_LocalScale: {x: 2.3271592, y: 5.771457, z: 2.3271592}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -91,3 +92,16 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &4418845035559578629
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3163647501778134266}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 865be33dbbe5bad428bfb110f215a52b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  canPush: 1
