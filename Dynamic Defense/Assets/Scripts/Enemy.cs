@@ -8,10 +8,25 @@ public class Enemy : MonoBehaviour
     public AudioClip deathSound;
     private AudioSource source;
     private float speed;
+    private int health;
+    private int waveNumber;
+
     // Start is called before the first frame update
     void Start()
     {
         source = GameObject.Find("AudioSource").GetComponent<AudioSource>();
+        waveNumber = PlayerPrefs.GetInt("wave");
+
+        if (waveNumber >= 0 && waveNumber < 4){
+            health = 1;
+        }
+        if (waveNumber >= 4 && waveNumber < 8) {
+            health = 2;
+        }
+        if (waveNumber >= 8)
+        {
+            health = 3;
+        }
     }
 
     // Update is called once per frame
@@ -33,7 +48,14 @@ public class Enemy : MonoBehaviour
             PlayerPrefs.SetInt("score", score + 10);
             int money = PlayerPrefs.GetInt("money");
             PlayerPrefs.SetInt("money", money + 1);
-            Destroy(gameObject);
+            
+
+            health -= collision.gameObject.GetComponent<Bullet>().damage;
+
+            if (health <= 0) {
+                Debug.Log(health);
+                Destroy(gameObject);
+            }
         }
         else if (collision.gameObject.tag == "PistolBullet")
         {
@@ -44,8 +66,14 @@ public class Enemy : MonoBehaviour
             PlayerPrefs.SetInt("score", score + 10);
             int money = PlayerPrefs.GetInt("money");
             PlayerPrefs.SetInt("money", money + 1);
-            Destroy(gameObject);
-            Debug.Log("Hit");
+
+            health -= collision.gameObject.GetComponent<Bullet>().damage;
+
+            if (health <= 0)
+            {
+                Debug.Log(health);
+                Destroy(gameObject);
+            }
         }
         else if (collision.gameObject.tag == "LaserBullet")
         {
@@ -56,8 +84,14 @@ public class Enemy : MonoBehaviour
             PlayerPrefs.SetInt("score", score + 10);
             int money = PlayerPrefs.GetInt("money");
             PlayerPrefs.SetInt("money", money + 1);
-            Destroy(gameObject);
-            Debug.Log("Hit");
+
+            health -= collision.gameObject.GetComponent<Bullet>().damage;
+
+            if (health <= 0)
+            {
+                Debug.Log(health);
+                Destroy(gameObject);
+            }
         }
         else if (collision.gameObject.tag == "RifleBullet")
         {
@@ -68,7 +102,14 @@ public class Enemy : MonoBehaviour
             PlayerPrefs.SetInt("score", score + 10);
             int money = PlayerPrefs.GetInt("money");
             PlayerPrefs.SetInt("money", money + 1);
-            Destroy(gameObject);
+
+            health -= collision.gameObject.GetComponent<Bullet>().damage;
+
+            if (health <= 0)
+            {
+                Debug.Log(health);
+                Destroy(gameObject);
+            }
         }
         else if (collision.gameObject.tag == "RevolverBullet")
         {
@@ -79,7 +120,14 @@ public class Enemy : MonoBehaviour
             PlayerPrefs.SetInt("score", score + 10);
             int money = PlayerPrefs.GetInt("money");
             PlayerPrefs.SetInt("money", money + 1);
-            Destroy(gameObject);
+
+            health -= collision.gameObject.GetComponent<Bullet>().damage;
+
+            if (health <= 0)
+            {
+                Debug.Log(health);
+                Destroy(gameObject);
+            }
         }
 
     }
