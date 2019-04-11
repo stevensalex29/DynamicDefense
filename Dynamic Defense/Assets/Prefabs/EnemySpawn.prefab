@@ -104,4 +104,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 865be33dbbe5bad428bfb110f215a52b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  canPush: 1
+  canSpawn: 1
