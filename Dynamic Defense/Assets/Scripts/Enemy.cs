@@ -53,7 +53,6 @@ public class Enemy : MonoBehaviour
             health -= collision.gameObject.GetComponent<Bullet>().damage;
 
             if (health <= 0) {
-                Debug.Log(health);
                 Destroy(gameObject);
             }
         }
@@ -89,7 +88,6 @@ public class Enemy : MonoBehaviour
 
             if (health <= 0)
             {
-                Debug.Log(health);
                 Destroy(gameObject);
             }
         }

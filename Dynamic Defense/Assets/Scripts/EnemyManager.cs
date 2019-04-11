@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEditor.SceneManagement;
+using UnityEngine.SceneManagement;
 using System;
 
 public class EnemyManager : MonoBehaviour
@@ -68,32 +68,11 @@ public class EnemyManager : MonoBehaviour
     // Switch to gunshop scene
     public void changeScene()
     {
-        UnityEngine.SceneManagement.SceneManager.LoadScene("GunShop");
+        SceneManager.LoadScene("GunShop");
     }
     
     Vector3 randPos()
     {
         return new Vector3(UnityEngine.Random.Range(-35.0f, 35.0f), .5f, UnityEngine.Random.Range(-35.0f, 35.0f));
     }
-    /*
-    public bool canSpawn(int i)
-    {
-        Collider col = enemySpawns[i].GetComponent<Collider>();
-        for(int j =0;j<enemyList.Count;j++)
-        {
-            if (col.bounds.Intersects(enemyList[j].GetComponent<Collider>().bounds))
-            {
-                return false;
-
-            }
-            else
-            {
-                return true;
-            }
-        }
-        return true;
-        
-    }
-    */
-
 }

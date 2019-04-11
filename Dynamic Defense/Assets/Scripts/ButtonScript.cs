@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEditor.SceneManagement;
+using UnityEngine.SceneManagement;
 
 public class ButtonScript : MonoBehaviour
 {
@@ -20,13 +20,13 @@ public class ButtonScript : MonoBehaviour
     // Play again
     public void playAgain()
     {
-        UnityEngine.SceneManagement.SceneManager.LoadScene("Level_Default");
+        SceneManager.LoadScene("Level_Default");
     }
 
     // Main menu
     public void mainMenu()
     {
-        UnityEngine.SceneManagement.SceneManager.LoadScene("MainMenu");
+        SceneManager.LoadScene("MainMenu");
     }
 
     // Quit Application
@@ -38,11 +38,11 @@ public class ButtonScript : MonoBehaviour
     // Help
     public void Help()
     {
-        UnityEngine.SceneManagement.SceneManager.LoadScene("Help");
+        SceneManager.LoadScene("Help");
     }
 
     // go to gun shop
     public void GunStore() {
-        UnityEngine.SceneManagement.SceneManager.LoadScene("GunShop");
+        SceneManager.LoadScene("GunShop");
     }
 }

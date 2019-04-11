@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEditor.SceneManagement;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -24,7 +24,7 @@ public class GameManager : MonoBehaviour
         GameObject.Find("Wave").GetComponent<Text>().text = "Wave: " + PlayerPrefs.GetInt("wave");
         if (Input.GetKeyDown("m"))
         {
-            UnityEngine.SceneManagement.SceneManager.LoadScene("MainMenu");
+            SceneManager.LoadScene("MainMenu");
         }
     }
 }
