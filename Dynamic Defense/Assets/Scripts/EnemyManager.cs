@@ -49,7 +49,7 @@ public class EnemyManager : MonoBehaviour
                 enemiesLeft--;
                 return;
             }
-            if (enemyList[i].gameObject.transform.position.y < -50)
+            if (enemyList[i].gameObject.transform.position.y < -50|| enemyList[i].gameObject.transform.position.y > 50)
             {
                 int enemySpawner = UnityEngine.Random.Range(0, enemySpawns.Length);
                 enemyList[i].transform.position = enemySpawns[enemySpawner].transform.position;
